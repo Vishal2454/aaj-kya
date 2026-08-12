@@ -13,7 +13,7 @@ const forms = require("./data/forms.js");
 
 const SITE = {
   name: "Aaj Kya?",
-  domain: "https://www.aajkya.in", // placeholder — point this at your real domain before launch
+  domain: "https://www.aajkyatools.in", // placeholder — point this at your real domain before launch
   tagline: "Everyday answers, one search away.",
   buildDate: new Date().toISOString().slice(0, 10),
   adsenseClientPlaceholder: "ca-pub-XXXXXXXXXXXXXXXX",
@@ -567,11 +567,11 @@ function buildStatic() {
         <h1>Contact us</h1>
         <p>Found a bug, have a tool suggestion, or want to talk about advertising on Aaj Kya?? We'd like to hear from you.</p>
         <h2>Email</h2>
-        <p>Write to us at <a href="mailto:hello@aajkya.in">hello@aajkya.in</a> — replace this with your real support address before launch.</p>
+        <p>Write to us at <a href="mailto:hello@aajkyatools.in">hello@aajkyatools.in</a> — replace this with your real support address before launch.</p>
         <h2>Tool requests</h2>
         <p>Tell us what calculator or converter you were searching for and couldn't find — that's usually exactly what we build next.</p>
         <h2>Advertising</h2>
-        <p>For ad placements and sponsorships, email <a href="mailto:ads@aajkya.in">ads@aajkya.in</a>.</p>`,
+        <p>For ad placements and sponsorships, email <a href="mailto:ads@aajkyatools.in">ads@aajkyatools.in</a>.</p>`,
     },
     {
       slug: "privacy-policy",
@@ -595,7 +595,7 @@ function buildStatic() {
         <h2>Changes to this policy</h2>
         <p>We may update this policy from time to time. Continued use of the site after changes means you accept the updated policy.</p>
         <h2>Contact</h2>
-        <p>Questions about this policy can be sent to <a href="mailto:hello@aajkya.in">hello@aajkya.in</a>.</p>`,
+        <p>Questions about this policy can be sent to <a href="mailto:hello@aajkyatools.in">hello@aajkyatools.in</a>.</p>`,
     },
     {
       slug: "terms",
@@ -615,7 +615,7 @@ function buildStatic() {
         <h2>Changes</h2>
         <p>We may update these terms or the site's tools at any time without prior notice.</p>
         <h2>Contact</h2>
-        <p>Questions about these terms can be sent to <a href="mailto:hello@aajkya.in">hello@aajkya.in</a>.</p>`,
+        <p>Questions about these terms can be sent to <a href="mailto:hello@aajkyatools.in">hello@aajkyatools.in</a>.</p>`,
     },
   ];
 

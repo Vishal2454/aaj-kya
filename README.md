@@ -54,7 +54,7 @@ auto-generated `tools-data.js` and `favicon.svg`, so your CSS/JS edits are safe.
   `renderHead()` and the `<ins class="adsbygoogle">` in `renderAdSlot()`),
   then rebuild. Ad slots are already placed at sensible, non-intrusive spots
   (after the hero on every tool page, mid-scroll on category/home pages).
-- **Contact emails**: `hello@aajkya.in` / `ads@aajkya.in` in the About/Contact/
+- **Contact emails**: `hello@aajkyatools.in` / `ads@aajkyatools.in` in the About/Contact/
   Privacy/Terms copy in `src/build.js` are placeholders — update them.
 - **Analytics**: add your analytics snippet in the `renderHead()` function.
 - **QR generator**: loads `qrcode.js` from cdnjs on that one page only
