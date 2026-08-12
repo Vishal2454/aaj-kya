@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.aajkya.in/sitemap.xml
+Sitemap: https://www.aajkya.in/api/sitemap.xml
