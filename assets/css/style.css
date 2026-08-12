@@ -72,6 +72,10 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 20px;
+  box-sizing: border-box;
+}
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
 }
 
 .eyebrow {
@@ -112,8 +116,12 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
 .site-header__bar {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
   padding: 14px 0;
+  min-width: 0; /* allow flex children to shrink instead of overflowing */
+}
+@media (min-width: 480px) {
+  .site-header__bar { gap: 20px; }
 }
 .logo {
   font-family: var(--font-display);
@@ -126,7 +134,7 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   gap: 2px;
 }
 .logo__mark { color: var(--marigold-deep); }
-.site-header__search { flex: 1; max-width: 480px; margin-left: auto; }
+.site-header__search { flex: 1; min-width: 0; max-width: 480px; margin-left: auto; }
 .site-header__nav {
   display: none;
 }
