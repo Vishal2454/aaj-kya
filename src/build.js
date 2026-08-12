@@ -85,9 +85,8 @@ function renderHead({ title, description, canonicalPath, jsonLd = [], keywords =
     gtag('js', new Date());
     gtag('config', 'G-C9PX19XFM4');
   </script>
-  <!-- Google AdSense: uncomment and add your publisher ID once approved.
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsenseClientPlaceholder}" crossorigin="anonymous"></script>
-  -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4459283679021807"
+     crossorigin="anonymous"></script>
   ${jsonLdBlocks}`;
 }
 
