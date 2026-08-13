@@ -497,8 +497,9 @@
   CALC["qr-generator"] = function (ctx, meta, form) {
     var text = ctx.get("text");
     var size = parseInt(ctx.get("size"), 10) || 260;
-    var out = form.parentElement.querySelector("[data-qr-out]");
-    var actions = form.parentElement.querySelector("[data-qr-actions]");
+    var layout = form.closest(".tool-layout") || document;
+    var out = layout.querySelector("[data-qr-out]");
+    var actions = layout.querySelector("[data-qr-actions]");
     if (!out) return;
 
     if (!text || !text.trim()) {
