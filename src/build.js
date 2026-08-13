@@ -16,7 +16,7 @@ const SITE = {
   domain: "https://www.aajkyatools.in", // placeholder — point this at your real domain before launch
   tagline: "Everyday answers, one search away.",
   buildDate: new Date().toISOString().slice(0, 10),
-  adsenseClientPlaceholder: "ca-pub-XXXXXXXXXXXXXXXX",
+  adsenseClientPlaceholder: "ca-pub-4459283679021807",
 };
 
 const DIST = path.join(__dirname, "..", "dist");
@@ -735,17 +735,91 @@ function build404() {
   );
 }
 
+function buildHtaccess() {
+  write(
+    ".htaccess",
+    `# ==========================================================================
+# Aaj Kya? — Apache config for Hostinger (or any Apache/cPanel) shared hosting
+# ==========================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  RewriteCond %{HTTP_HOST} ^www\\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+  # To force WWW instead of non-WWW, comment the two lines above and
+  # uncomment these two:
+  # RewriteCond %{HTTP_HOST} !^www\\. [NC]
+  # RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+ErrorDocument 404 /404.html
+Options -Indexes
+
+<FilesMatch "^\\.">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/xml text/plain
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css               "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml          "access plus 1 year"
+  ExpiresByType image/png              "access plus 1 year"
+  ExpiresByType image/jpeg             "access plus 1 year"
+  ExpiresByType image/webp             "access plus 1 year"
+  ExpiresByType text/html              "access plus 0 seconds"
+  ExpiresByType application/xml        "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\\.(css|js|svg|png|jpg|jpeg|webp)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\\.(html)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+AddType image/svg+xml .svg
+`
+  );
+}
+
+function buildAdsTxt() {
+  // Derives the ads.txt entry from the same SITE.adsenseClientPlaceholder
+  // used in the AdSense script tags, so the two can never fall out of sync.
+  // AdSense script uses "ca-pub-XXXX"; ads.txt uses "pub-XXXX" (no "ca-").
+  const pubId = SITE.adsenseClientPlaceholder.replace(/^ca-/, "");
+  write("ads.txt", `google.com, ${pubId}, DIRECT, f08c47fec0942fa0\n`);
+}
+
 // ---------------------------------------------------------------------
 function run() {
   if (fs.existsSync(DIST)) {
-    // wipe generated HTML/XML but keep hand-authored assets (css/js)
-    const keep = new Set(["assets"]);
+    // wipe generated HTML/XML but keep hand-authored assets (css/js) and .htaccess
+    const keep = new Set(["assets", ".htaccess"]);
     for (const entry of fs.readdirSync(DIST)) {
       if (!keep.has(entry)) fs.rmSync(path.join(DIST, entry), { recursive: true, force: true });
     }
   }
   buildToolsDataJs();
   buildFavicon();
+  buildHtaccess();
+  buildAdsTxt();
   buildHome();
   buildCategories();
   buildTools();
