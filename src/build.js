@@ -228,9 +228,21 @@ function buildHome() {
       </a>`
     )
     .join("\n      ");
-
   const toolCards = tools
     .slice(0, 12)
+    .map(
+      (t) => `<a class="tool-card" href="${t.url}">
+        <span class="tool-card__icon" aria-hidden="true">${icon(t.category)}</span>
+        <span>
+          <span class="tool-card__cat">${esc(t.categoryTitle)}</span>
+          <h3>${esc(t.title)}</h3>
+          <p>${esc(t.tagline)}</p>
+        </span>
+      </a>`
+    )
+    .join("\n      ");
+  const moreToolCards = tools
+    .slice(-8)
     .map(
       (t) => `<a class="tool-card" href="${t.url}">
         <span class="tool-card__icon" aria-hidden="true">${icon(t.category)}</span>
@@ -282,11 +294,26 @@ function buildHome() {
       </div>
     </section>
 
+    <section class="section section--muted">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Popular right now / लोकप्रिय टूल्स</p>
+            <h2 class="mt-0">Tools people use daily</h2>
+          </div>
+          <a href="/search/" class="btn btn--ghost btn--sm">See all tools →</a>
+        </div>
+        <div class="tool-grid">
+          ${toolCards}
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
         <div class="section__head">
           <div>
-            <p class="eyebrow">Browse</p>
+            <p class="eyebrow">Browse / श्रेणियाँ</p>
             <h2 class="mt-0">Categories</h2>
           </div>
         </div>
@@ -302,13 +329,13 @@ function buildHome() {
       <div class="container">
         <div class="section__head">
           <div>
-            <p class="eyebrow">Popular right now</p>
-            <h2 class="mt-0">Tools people use daily</h2>
+            <p class="eyebrow">Recently Added / हाल ही में जोड़े गए</p>
+            <h2 class="mt-0">More Useful Tools</h2>
           </div>
           <a href="/search/" class="btn btn--ghost btn--sm">See all tools →</a>
         </div>
         <div class="tool-grid">
-          ${toolCards}
+          ${moreToolCards}
         </div>
       </div>
     </section>
